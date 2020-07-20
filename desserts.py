@@ -26,6 +26,19 @@ class Cupcake:
 
       self.qty += amount
 
+    def sell(self, amount):
+      """Sell the given amount of cupcakes and update stock quantity."""
+
+      # if cupcakes are out of stock
+      if self.qty == 0:
+        print('Sorry, these cupcakes are sold out')
+
+      else:
+        self.qty -= amount
+        if self.qty < 0:
+          self.qty = 0
+
+
 
 if __name__ == '__main__':
     import doctest
