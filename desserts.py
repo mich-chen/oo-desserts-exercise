@@ -17,10 +17,15 @@ class Cupcake:
         """
         scaled_recipe = []
 
+        # for each ingredient in the ingredients list
         for ingredient in ingredients:
+            # store ingredient quantity in variable
             ingredient_qty = ingredient[1]
+            # multiply ingredient quantity by given amount
             scaled_amount = ingredient_qty * amount
+            # store new ingredient tuple with multiplied amount
             scaled_ingredient = (ingredient[0], scaled_amount)
+            # append new ingredient tuple in a new list
             scaled_recipe.append(scaled_ingredient)
 
         return scaled_recipe
