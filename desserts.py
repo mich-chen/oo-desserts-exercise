@@ -6,6 +6,7 @@ class Cupcake:
 
     # dictionary that will store all cupcake instances by name
     cache = {}
+    class_name = 'Cupcake'
 
     @staticmethod
     def scale_recipe(ingredients, amount):
@@ -15,16 +16,13 @@ class Cupcake:
         ingredient_qty) Return a list of tuples with quantity of each
         ingredient multiplied by amount.
         """
-        scaled_recipe = []
 
-        # for each ingredient in the ingredients list
-        for name, qty in ingredients:
-            # multiple qty by given amount and store with name as new tuple
-            scaled_ingredient = (name, qty * amount)
-            # append new ingredient tuple in a new list
-            scaled_recipe.append(scaled_ingredient)
+        # multiple qty by amount and store new tuple in a list
+        # scaled_recipe = [(name, qty * amount) for name, qty in ingredients]
 
-        return scaled_recipe
+        return [(name, qty * amount) for name, qty in ingredients]
+
+
 
     @classmethod
     def get(cls, name):
@@ -33,30 +31,27 @@ class Cupcake:
         # check if name is in our dictionary of cupcakes
         if name not in cls.cache:
             # if not, then print statement
-            print("Sorry, that cupcake doesn't exist")
+            print(f"Sorry, that {cls.class_name} doesn't exist")
 
         else:
             # return the __repr__ of cupcake name given (sotred as value)
             return cls.cache[name]
 
 
-
-
-
-    def __init__(self, name, flavor, price, qty=0):
+    def __init__(self, name, flavor, price):
         """Instance of a cupcake."""
 
         self.name = name
         self.flavor = flavor
         self.price = price
-        self.qty = qty
+        self.qty = 0
         self.cache[self.name] = self
 
 
     def __repr__(self):
         """Human-readable printout for debugging."""
 
-        return f'<Cupcake name="{self.name}" qty={self.qty}>'
+        return f'<{self.class_name} name="{self.name}" qty={self.qty}>'
 
     def add_stock(self, amount):
         """Add amount to cupcake stock quantity."""
@@ -68,7 +63,7 @@ class Cupcake:
 
         # if cupcakes are out of stock
         if self.qty == 0:
-            print('Sorry, these cupcakes are sold out')
+            print(f'Sorry, these cupcake are sold out')
 
         else:
         # subtract amount sold from stock quantity
@@ -78,6 +73,36 @@ class Cupcake:
           # if goes below zero (sold more than have) then set to 0
                 self.qty = 0
 
+
+class Brownie(Cupcake):
+    """A brownie."""
+    class_name = 'Brownie'
+
+    def __init__(self, name, price):
+        """ Initializing a brownie."""
+
+        super().__init__(name, 'chocolate', price)
+
+    def __repr__(self):
+        """Human-readable printout for debugging."""
+
+        return f'<Brownie name="{self.name}" qty={self.qty}>'
+
+#     def sell(self, amount):
+#         """Sell the given amount of cupcakes and update stock quantity."""
+
+#         super().sell(amount)
+#         # if cupcakes are out of stock
+#         if self.qty == 0:
+#             print('Sorry, these brownies are sold out')
+
+#         else:
+#         # subtract amount sold from stock quantity
+#             self.qty -= amount
+#         # make sure quantity never goes below zero (no negative stock)
+#             if self.qty < 0:
+#           # if goes below zero (sold more than have) then set to 0
+#                 self.qty = 0
 
 
 if __name__ == '__main__':
