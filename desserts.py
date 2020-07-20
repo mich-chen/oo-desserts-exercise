@@ -30,6 +30,20 @@ class Cupcake:
 
         return scaled_recipe
 
+    @classmethod
+    def get(cls, name):
+        """Return cupcake from cache. If name not found, print a statement."""
+
+        # check if name is in our dictionary of cupcakes
+        if name not in cls.cache:
+            # if not, then print statement
+            print("Sorry, that cupcake doesn't exist")
+
+        else:
+            # return the __repr__ of cupcake name given (sotred as value)
+            return cls.cache[name]
+
+
 
 
 
