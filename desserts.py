@@ -4,6 +4,9 @@
 class Cupcake:
     """A cupcake."""
 
+    # dictionary that will store all cupcake instances by name
+    cache = {}
+
     def __repr__(self):
         """Human-readable printout for debugging."""
 
