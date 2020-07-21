@@ -23,7 +23,6 @@ class Cupcake:
         return [(name, qty * amount) for name, qty in ingredients]
 
 
-
     @classmethod
     def get(cls, name):
         """Return cupcake from cache. If name not found, print a statement."""
@@ -31,10 +30,10 @@ class Cupcake:
         # check if name is in our dictionary of cupcakes
         if name not in cls.cache:
             # if not, then print statement
-            print(f"Sorry, that {cls.class_name} doesn't exist")
+            print(f"Sorry, that {cls.class_name.lower()} doesn't exist")
 
         else:
-            # return the __repr__ of cupcake name given (sotred as value)
+            # return the __repr__ of cupcake name given
             return cls.cache[name]
 
 
@@ -63,7 +62,7 @@ class Cupcake:
 
         # if cupcakes are out of stock
         if self.qty == 0:
-            print(f'Sorry, these cupcake are sold out')
+            print(f'Sorry, these {self.class_name.lower()}s are sold out')
 
         else:
         # subtract amount sold from stock quantity
@@ -81,28 +80,9 @@ class Brownie(Cupcake):
     def __init__(self, name, price):
         """ Initializing a brownie."""
 
+        # call parent class Cupcake's __init__ and set flavor as chocolate
         super().__init__(name, 'chocolate', price)
 
-    def __repr__(self):
-        """Human-readable printout for debugging."""
-
-        return f'<Brownie name="{self.name}" qty={self.qty}>'
-
-#     def sell(self, amount):
-#         """Sell the given amount of cupcakes and update stock quantity."""
-
-#         super().sell(amount)
-#         # if cupcakes are out of stock
-#         if self.qty == 0:
-#             print('Sorry, these brownies are sold out')
-
-#         else:
-#         # subtract amount sold from stock quantity
-#             self.qty -= amount
-#         # make sure quantity never goes below zero (no negative stock)
-#             if self.qty < 0:
-#           # if goes below zero (sold more than have) then set to 0
-#                 self.qty = 0
 
 
 if __name__ == '__main__':
